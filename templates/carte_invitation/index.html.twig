@@ -1,0 +1,39 @@
+{% extends 'base-back.html.twig' %}
+
+{% block title %}CarteInvitation index{% endblock %}
+
+                 {% block content %}
+    <h1>CarteInvitation index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Prix</th>
+                <th>Photo</th>
+                <th>Decription</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for carte_invitation in carte_invitations %}
+            <tr>
+                <td>{{ carte_invitation.id }}</td>
+                <td>{{ carte_invitation.prix }}</td>
+                <td>{{ carte_invitation.photo }}</td>
+                <td>{{ carte_invitation.decription }}</td>
+                <td>
+                    <a href="{{ path('app_carte_invitation_show', {'id': carte_invitation.id}) }}">show</a>
+                    <a href="{{ path('app_carte_invitation_edit', {'id': carte_invitation.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_carte_invitation_new') }}">Create new</a>
+{% endblock %}
